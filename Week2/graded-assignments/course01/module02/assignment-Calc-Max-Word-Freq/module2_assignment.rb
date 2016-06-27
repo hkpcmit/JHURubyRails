@@ -30,7 +30,10 @@ class LineAnalyzer
   end
 
   def calculate_word_frequency
-    freq = content.split(/\W+/).inject(Hash.new(0)) {|h,w| h[w.downcase] += 1; h}
+    freq = content.split(/\W+/).inject(Hash.new(0)) do |h,w|
+      h[w.downcase] += 1
+      h
+    end
     if freq.empty?
       @highest_wf_count, @highest_wf_words = 0, []
     else
