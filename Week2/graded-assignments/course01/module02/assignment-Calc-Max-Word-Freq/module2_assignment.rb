@@ -34,8 +34,11 @@ class LineAnalyzer
     if freq.empty?
       @highest_wf_count, @highest_wf_words = 0, []
     else
-      @highest_wf_count, @highest_wf_words = freq.group_by{
-        |_, v| v}.inject({}) {|h, (k,a)| h[k] = a.map{|e| e[0]}; h}.max
+      @highest_wf_count, @highest_wf_words = freq.group_by {
+        |_, v| v}.inject({}) do |h, (k,a)|
+        h[k] = a.map {|e| e[0]}
+        h
+        end.max
     end
   end
 end
@@ -80,7 +83,7 @@ class Solution
   end
 
   def calculate_line_with_highest_frequency
-    @highest_count_across_lines, @highest_count_words_across_lines = @analyzers.group_by{
+    @highest_count_across_lines, @highest_count_words_across_lines = @analyzers.group_by {
       |l| l.highest_wf_count}.max
   end
 
