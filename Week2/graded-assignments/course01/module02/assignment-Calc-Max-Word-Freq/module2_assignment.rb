@@ -85,5 +85,7 @@ class Solution
   end
 
   def print_highest_word_frequency_across_lines
+    puts "The following words have the highest word frequency per line:"
+    @analyzers.each {|l| puts "#{l.highest_wf_words} (appears in line #{l.line_number})"}
   end
 end
