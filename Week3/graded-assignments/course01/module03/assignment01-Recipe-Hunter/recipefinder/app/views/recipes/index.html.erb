@@ -1,2 +1,16 @@
-<h1>Recipes#index</h1>
-<p><%= @recipes %></p>
+<h1>Search Results for <%= @term%></h1>
+
+<table border="1">
+  <tr>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Rank</th>
+  </tr>
+  <% @recipes.each do |r| %>
+  <tr class=<%= cycle('even', 'odd') %> >
+    <td><%= link_to(image_tag(r["image_url"], height: '100', width: '100'), r["f2f_url"]) %></td>
+    <td><%= link_to(sanitize(r["title"]), r["f2f_url"]) %></td>
+    <td><%= r["social_rank"] %></td>
+  </tr>
+  <% end %>
+</table>
